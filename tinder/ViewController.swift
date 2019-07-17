@@ -10,35 +10,29 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    let topStackView = TopNavigationStackView()
+    let blueView = UIView()
+    let bottomStackView = HomeBottomControlsStackView()
+    
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let subViews = [UIColor.gray,.darkGray,.black].map { (color) -> UIView in
-            let v = UIView()
-            v.backgroundColor = color
-            return v
-        }
-        
-        let topStackView = UIStackView(arrangedSubviews: subViews)
-        topStackView.distribution = .fillEqually
-        topStackView.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        
-        let blueView = UIView()
         blueView.backgroundColor = .blue
+        setupLayout()
         
-        let yellowView = UIView()
-        yellowView.backgroundColor = .yellow
-        yellowView.heightAnchor.constraint(equalToConstant: 120).isActive = true
+    }
+    
+    
+    //MARK:- file private method
+    fileprivate func setupLayout() {
+        let overallStackView = UIStackView(arrangedSubviews: [topStackView,blueView,bottomStackView])
+        overallStackView.axis = .vertical
         
-        let stackView = UIStackView(arrangedSubviews: [topStackView,blueView,yellowView])
-        //stackView.distribution = .fillEqually
-        stackView.axis = .vertical
+        view.addSubview(overallStackView)
         
-        
-        view.addSubview(stackView)
-
-        stackView.fillSuperview()
-        
+        overallStackView.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor)
     }
 
 
