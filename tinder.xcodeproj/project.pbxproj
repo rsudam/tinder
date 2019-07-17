@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8E38F33722DF6B1400EDF039 /* TopNavigationStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E38F33622DF6B1400EDF039 /* TopNavigationStackView.swift */; };
+		8E38F33922DF74CA00EDF039 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E38F33822DF74CA00EDF039 /* CardView.swift */; };
 		8E5DDEA922DE29B90089A2CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5DDEA822DE29B90089A2CD /* AppDelegate.swift */; };
 		8E5DDEAB22DE29B90089A2CD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5DDEAA22DE29B90089A2CD /* ViewController.swift */; };
 		8E5DDEAE22DE29B90089A2CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E5DDEAC22DE29B90089A2CD /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		8E38F33622DF6B1400EDF039 /* TopNavigationStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopNavigationStackView.swift; sourceTree = "<group>"; };
+		8E38F33822DF74CA00EDF039 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		8E5DDEA522DE29B90089A2CD /* tinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E5DDEA822DE29B90089A2CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8E5DDEAA22DE29B90089A2CD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 			children = (
 				8E5DDEBE22DE37C90089A2CD /* HomeBottomControlsStackView.swift */,
 				8E38F33622DF6B1400EDF039 /* TopNavigationStackView.swift */,
+				8E38F33822DF74CA00EDF039 /* CardView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -164,6 +167,7 @@
 				8E5DDEBF22DE37C90089A2CD /* HomeBottomControlsStackView.swift in Sources */,
 				8E5DDEA922DE29B90089A2CD /* AppDelegate.swift in Sources */,
 				8E5DDEBC22DE2D860089A2CD /* Extensions+UIView.swift in Sources */,
+				8E38F33922DF74CA00EDF039 /* CardView.swift in Sources */,
 				8E38F33722DF6B1400EDF039 /* TopNavigationStackView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
