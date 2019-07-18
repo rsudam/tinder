@@ -11,7 +11,11 @@ import UIKit
 class CardView: UIView {
     
     fileprivate let imageView = UIImageView(image: #imageLiteral(resourceName: "lady5c"))
-
+    
+    //MARK:- configuration
+    let threshold:CGFloat = 100
+    var xOffset:CGFloat = 1000
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -32,21 +36,43 @@ class CardView: UIView {
         case .changed:
             handleChanged(gesture)
         case .ended:
-            handleEnded()
+            handleEnded(gesture)
         default:
                 ()
         }
     }
     
     fileprivate func handleChanged(_ gesture: UIPanGestureRecognizer) {
+        
         let translation = gesture.translation(in: nil)
-        self.transform = CGAffineTransform(translationX: translation.x, y: translation.y)
+        //converting degrees to radions(angles)
+        
+        let degrees: CGFloat = translation.x / 20
+        let angle:CGFloat = degrees * .pi / 180
+        
+        let rotationalTransformation  = CGAffineTransform(rotationAngle: angle)
+        self.transform = rotationalTransformation.translatedBy(x: translation.x, y: translation.y)
+        
+
     }
 
-    fileprivate func handleEnded() {
+    fileprivate func handleEnded(_ gesture: UIPanGestureRecognizer) {
+        
+        let shouldDismissCard = abs(gesture.translation(in: nil).x) > threshold
+        if gesture.translation(in: nil).x < 0 {
+            xOffset = xOffset * -1
+        }
+        
         UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1, options: .curveEaseOut, animations: {
-            self.transform = .identity
+            
+            if shouldDismissCard {
+                self.frame = CGRect(x: self.xOffset, y: 0, width: self.frame.width, height: self.frame.height)
+            } else {
+                self.transform = .identity
+            }
         }) { (_) in
+            self.transform = .identity
+            self.frame = CGRect(x: 0, y: 0, width: self.superview!.frame.width, height: self.superview!.frame.height)
             
         }
     }
