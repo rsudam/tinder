@@ -14,16 +14,20 @@ class HomeController: UIViewController {
     let cardsDeckView = UIView()
     let bottomStackView = HomeBottomControlsStackView()
     
-
-    let users = [
-        User.init(name: "Kelly", age: 23, profession: "Music DJ", profileImage: "lady5c"),
-        User.init(name: "Jane", age: 18, profession: "Teacher", profileImage: "lady4c")
-    ]
     
-    let cardViewModels = [
-        User.init(name: "Kelly", age: 23, profession: "Music DJ", profileImage: "lady5c").toCardViewModel(),
-        User.init(name: "Jane", age: 18, profession: "Teacher", profileImage: "lady4c").toCardViewModel()
-    ]
+    let cardViewModels:[CardViewModel] = {
+        let producer = [
+            User.init(name: "Kelly", age: 23, profession: "Music DJ", profileImage: "lady5c"),
+            User.init(name: "Jane", age: 18, profession: "Teacher", profileImage: "lady4c"),
+            Adverstiser.init(title: "Slide Out Menu", brandName: "Lets build that app", posterImage: "slide_out_menu_poster")
+        ] as [ProducesCardViewModel]
+        
+        let viewModels = producer.map({return $0.toCardViewModel()})
+        return viewModels
+    }()
+    
+    
+    
     
     
     override func viewDidLoad() {
@@ -41,11 +45,7 @@ class HomeController: UIViewController {
         
         cardViewModels.forEach { (cardVM) in
             let cardView = CardView(frame: .zero)
-            
-            cardView.imageView.image = UIImage(named: cardVM.imageName)
-            cardView.informationLabel.attributedText = cardVM.attributedString
-            cardView.informationLabel.textAlignment = cardVM.textAlignment
-            
+            cardView.cardViewModel = cardVM
             cardsDeckView.addSubview(cardView)
             cardView.fillSuperview()
             
