@@ -20,6 +20,11 @@ class HomeController: UIViewController {
         User.init(name: "Jane", age: 18, profession: "Teacher", profileImage: "lady4c")
     ]
     
+    let cardViewModels = [
+        User.init(name: "Kelly", age: 23, profession: "Music DJ", profileImage: "lady5c").toCardViewModel(),
+        User.init(name: "Jane", age: 18, profession: "Teacher", profileImage: "lady4c").toCardViewModel()
+    ]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,23 +39,18 @@ class HomeController: UIViewController {
     
     fileprivate func setupDummyCards() {
         
-        users.forEach { (user) in
+        cardViewModels.forEach { (cardVM) in
             let cardView = CardView(frame: .zero)
             
-            cardView.imageView.image = UIImage(named: user.profileImage)
-            
-            let attributedText = NSMutableAttributedString(string: "\(user.name)", attributes: [.font : UIFont.systemFont(ofSize: 32, weight: .heavy)])
-            
-            attributedText.append(NSAttributedString(string: " \(user.age)", attributes: [.font :UIFont.systemFont(ofSize: 28, weight: .regular) ]))
-            
-            attributedText.append(NSAttributedString(string: "\n\(user.profession)", attributes: [.font :UIFont.systemFont(ofSize: 28, weight: .regular) ]))
-            
-            cardView.informationLabel.attributedText = attributedText
-            
+            cardView.imageView.image = UIImage(named: cardVM.imageName)
+            cardView.informationLabel.attributedText = cardVM.attributedString
+            cardView.informationLabel.textAlignment = cardVM.textAlignment
             
             cardsDeckView.addSubview(cardView)
             cardView.fillSuperview()
+            
         }
+
         
     }
     
