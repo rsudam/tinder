@@ -12,7 +12,7 @@ struct User:ProducesCardViewModel {
     let name: String
     let age: Int
     let profession: String
-    let profileImage: String
+    let imageNames: [String]
     
     
     func toCardViewModel() -> CardViewModel {
@@ -24,7 +24,7 @@ struct User:ProducesCardViewModel {
         attributedText.append(NSAttributedString(string: "\n\(profession)", attributes: [.font :UIFont.systemFont(ofSize: 20, weight: .regular) ]))
 
         
-        return CardViewModel.init(imageName: profileImage, attributedString: attributedText, textAlignment: .left)
+        return CardViewModel.init(imageNames: imageNames, attributedString: attributedText, textAlignment: .left)
     }
     
 }

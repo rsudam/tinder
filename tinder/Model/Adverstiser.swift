@@ -11,7 +11,7 @@ import UIKit
 struct Adverstiser:ProducesCardViewModel {
     let title: String
     let brandName: String
-    let posterImage: String
+    let posterImages: [String]
     
     func toCardViewModel() -> CardViewModel {
         
@@ -19,6 +19,6 @@ struct Adverstiser:ProducesCardViewModel {
         
         attributedString.append(NSAttributedString(string: "\n\(brandName)", attributes: [.font : UIFont.systemFont(ofSize: 28, weight: .regular)]))
         
-        return CardViewModel.init(imageName: posterImage, attributedString: attributedString, textAlignment: .center)
+        return CardViewModel.init(imageNames: posterImages, attributedString: attributedString, textAlignment: .center)
     }
 }
