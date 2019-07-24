@@ -34,10 +34,17 @@ class HomeController: UIViewController {
         setupLayout()
         setupDummyCards()
         
+        topStackView.settingsButton.addTarget(self, action: #selector(handleSettings), for: .touchUpInside)
+        
     }
     
     
     //MARK:- file private method
+    
+    @objc fileprivate func handleSettings() {
+        let registrationController = RegistrationController()
+        present(registrationController, animated: true)
+    }
     
     fileprivate func setupDummyCards() {
         
@@ -48,7 +55,6 @@ class HomeController: UIViewController {
             cardView.fillSuperview()
             
         }
-
         
     }
     
