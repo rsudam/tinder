@@ -13,7 +13,9 @@ class RegistrationController: UIViewController {
     //MARK:- fileprivate instance variables
     fileprivate let topColor = #colorLiteral(red: 0.9804053903, green: 0.3804147542, blue: 0.3686065674, alpha: 1)
     fileprivate let bottomColor = #colorLiteral(red: 0.8941414952, green: 0.1059144512, blue: 0.46270293, alpha: 1)
+    fileprivate let registerButtonEnableColor = #colorLiteral(red: 0.8157079816, green: 0.09805912524, blue: 0.3333103657, alpha: 1)
     fileprivate let gradientLayer = CAGradientLayer()
+    fileprivate let registrationViewModel = RegistrationViewModel()
     
     let selectPhotoButton: UIButton = {
        let button = UIButton(type: .system)
@@ -30,6 +32,7 @@ class RegistrationController: UIViewController {
         let tf = CustomTextField(padding: 16)
         tf.placeholder = "Enter full name"
         tf.backgroundColor = .white
+        tf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         return tf
     }()
     
@@ -38,6 +41,7 @@ class RegistrationController: UIViewController {
         tf.placeholder = "Enter email"
         tf.backgroundColor = .white
         tf.keyboardType = .emailAddress
+        tf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         return tf
     }()
     
@@ -46,6 +50,7 @@ class RegistrationController: UIViewController {
         tf.placeholder = "Enter password"
         tf.backgroundColor = .white
         tf.isSecureTextEntry = true
+        tf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         return tf
     }()
     
@@ -53,7 +58,9 @@ class RegistrationController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("Register", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = #colorLiteral(red: 0.8157079816, green: 0.09805912524, blue: 0.3333103657, alpha: 1)
+        button.backgroundColor = .gray
+        button.isEnabled = false
+        button.setTitleColor(.darkGray, for: .disabled)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.heightAnchor.constraint(equalToConstant: 44).isActive = true
         button.layer.cornerRadius = 22
@@ -79,7 +86,7 @@ class RegistrationController: UIViewController {
     ])
 
     
-    //Mark:- override methods
+    //MARK:- override methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,6 +95,7 @@ class RegistrationController: UIViewController {
         setupLayout()
         setupNotificationObserver()
         setTapGesture()
+        setupRegistrationFormValidationObserver()
     }
     
     override func viewWillLayoutSubviews() {
@@ -98,9 +106,15 @@ class RegistrationController: UIViewController {
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         if self.traitCollection.verticalSizeClass == .compact {
             overAllStackView.axis = .horizontal
+            selectPhotoButton.widthAnchor.constraint(equalToConstant: 275).isActive = true
         } else {
             overAllStackView.axis = .vertical
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
     }
     
     
@@ -118,8 +132,6 @@ class RegistrationController: UIViewController {
 
         overAllStackView.spacing = 8
         overAllStackView.axis = .vertical
-        
-        selectPhotoButton.widthAnchor.constraint(equalToConstant: 275).isActive = true
         
         view.addSubview(overAllStackView)
         overAllStackView.anchor(top: nil, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 0, left: 50, bottom: 0, right: 50))
@@ -156,10 +168,30 @@ class RegistrationController: UIViewController {
     @objc func handleTap() {
         self.view.endEditing(true)
     }
+
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        NotificationCenter.default.removeObserver(self)
+    @objc fileprivate func handleTextChange(textfield: UITextField){
+        if textfield == fullNameTextField {
+            registrationViewModel.fullName = textfield.text
+        } else if textfield == emailTextField {
+            registrationViewModel.email = textfield.text
+        } else {
+            registrationViewModel.password = textfield.text
+        }
+        
+    }
+    
+    fileprivate func setupRegistrationFormValidationObserver() {
+        registrationViewModel.registrationFormValidationObserver = {[unowned self] (isFormValid) in
+            self.registerButton.isEnabled = isFormValid
+            if isFormValid {
+                self.registerButton.backgroundColor = self.registerButtonEnableColor
+                self.registerButton.setTitleColor(.white, for: .normal)
+            } else {
+                self.registerButton.backgroundColor = .gray
+                self.registerButton.setTitleColor(.darkGray, for: .disabled)
+            }
+        }
     }
 
 }
