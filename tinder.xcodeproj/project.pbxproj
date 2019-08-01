@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		21268EC733BEFBAC967D0905 /* Pods_tinder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 759C51D901BFA9DFF113B09F /* Pods_tinder.framework */; };
 		8E1195E022E8A31C00D18C10 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1195DF22E8A31C00D18C10 /* RegistrationController.swift */; };
 		8E1195E322E8AEEB00D18C10 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1195E222E8AEEB00D18C10 /* CustomTextField.swift */; };
+		8E162EFF22F3463900D87A5A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8E162EFE22F3463900D87A5A /* GoogleService-Info.plist */; };
 		8E38F33722DF6B1400EDF039 /* TopNavigationStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E38F33622DF6B1400EDF039 /* TopNavigationStackView.swift */; };
 		8E38F33922DF74CA00EDF039 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E38F33822DF74CA00EDF039 /* CardView.swift */; };
 		8E5DDEA922DE29B90089A2CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5DDEA822DE29B90089A2CD /* AppDelegate.swift */; };
@@ -26,8 +28,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3F6F223B6804298C0472633D /* Pods-tinder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tinder.release.xcconfig"; path = "Pods/Target Support Files/Pods-tinder/Pods-tinder.release.xcconfig"; sourceTree = "<group>"; };
+		759C51D901BFA9DFF113B09F /* Pods_tinder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tinder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E1195DF22E8A31C00D18C10 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		8E1195E222E8AEEB00D18C10 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		8E162EFE22F3463900D87A5A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8E38F33622DF6B1400EDF039 /* TopNavigationStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopNavigationStackView.swift; sourceTree = "<group>"; };
 		8E38F33822DF74CA00EDF039 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		8E5DDEA522DE29B90089A2CD /* tinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +49,7 @@
 		8E9F4ECD22E3690A0088C3BF /* ProducesCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProducesCardViewModel.swift; sourceTree = "<group>"; };
 		8ECEEE9622F33A2C006EC3B4 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		8EF7D0EB22E0C3E5008F84F4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A9564C04024F22436B8633E8 /* Pods-tinder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tinder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-tinder/Pods-tinder.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,17 +57,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21268EC733BEFBAC967D0905 /* Pods_tinder.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		597C9C1A32B029D723804739 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				759C51D901BFA9DFF113B09F /* Pods_tinder.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8E5DDE9C22DE29B90089A2CD = {
 			isa = PBXGroup;
 			children = (
 				8E5DDEA722DE29B90089A2CD /* tinder */,
 				8E5DDEA622DE29B90089A2CD /* Products */,
+				DED4F1624023E95FC48FC33A /* Pods */,
+				597C9C1A32B029D723804739 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -86,6 +103,7 @@
 				8E5DDEAF22DE29BB0089A2CD /* Assets.xcassets */,
 				8E5DDEB122DE29BB0089A2CD /* LaunchScreen.storyboard */,
 				8E5DDEB422DE29BB0089A2CD /* Info.plist */,
+				8E162EFE22F3463900D87A5A /* GoogleService-Info.plist */,
 			);
 			path = tinder;
 			sourceTree = "<group>";
@@ -137,6 +155,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		DED4F1624023E95FC48FC33A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A9564C04024F22436B8633E8 /* Pods-tinder.debug.xcconfig */,
+				3F6F223B6804298C0472633D /* Pods-tinder.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -144,9 +171,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8E5DDEB722DE29BB0089A2CD /* Build configuration list for PBXNativeTarget "tinder" */;
 			buildPhases = (
+				0C96B26FF0A32A74BF048B64 /* [CP] Check Pods Manifest.lock */,
 				8E5DDEA122DE29B90089A2CD /* Sources */,
 				8E5DDEA222DE29B90089A2CD /* Frameworks */,
 				8E5DDEA322DE29B90089A2CD /* Resources */,
+				78EE0BD096A24A1081CA8ACF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -196,12 +225,84 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E5DDEB322DE29BB0089A2CD /* LaunchScreen.storyboard in Resources */,
+				8E162EFF22F3463900D87A5A /* GoogleService-Info.plist in Resources */,
 				8E5DDEB022DE29BB0089A2CD /* Assets.xcassets in Resources */,
 				8E5DDEAE22DE29B90089A2CD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0C96B26FF0A32A74BF048B64 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-tinder-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		78EE0BD096A24A1081CA8ACF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-tinder/Pods-tinder-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/JGProgressHUD/JGProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-RxLibrary/RxLibrary.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JGProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxLibrary.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-tinder/Pods-tinder-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8E5DDEA122DE29B90089A2CD /* Sources */ = {
@@ -364,6 +465,7 @@
 		};
 		8E5DDEB822DE29BB0089A2CD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A9564C04024F22436B8633E8 /* Pods-tinder.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -382,6 +484,7 @@
 		};
 		8E5DDEB922DE29BB0089A2CD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3F6F223B6804298C0472633D /* Pods-tinder.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
