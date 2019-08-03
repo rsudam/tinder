@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Firebase
 import JGProgressHUD
 
 extension RegistrationController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -206,7 +205,7 @@ class RegistrationController: UIViewController {
     
     fileprivate func setupRegistrationFormValidationObserver() {
 
-        registrationViewModel.bindableIsFormValidation.bind { (isFormValid) in
+        registrationViewModel.bindableIsFormValidation.bind { [unowned self] (isFormValid) in
             
             guard let isFormValid = isFormValid else { return }
             
@@ -224,6 +223,16 @@ class RegistrationController: UIViewController {
             guard let image = image else {return}
             self.selectPhotoButton.setImage(image.withRenderingMode(.alwaysOriginal), for: .normal)
         }
+        
+        registrationViewModel.bindableIsRegistering.bind { (isRegistering) in
+            guard let isRegistering = isRegistering else { return }
+            if isRegistering {
+                self.showRegisterHUD.textLabel.text = "Registering..."
+                self.showRegisterHUD.show(in: self.view)
+            } else {
+                self.showRegisterHUD.dismiss()
+            }
+        }
 
     }
 
@@ -232,42 +241,12 @@ class RegistrationController: UIViewController {
     
     @objc fileprivate func handleRegister(){
         self.handleTapDismiss()
-        
-        guard let email = emailTextField.text else { return }
-        guard let password = passwordTextField.text else { return }
-        
-        showRegisterHUD.textLabel.text = "Registering..."
-        showRegisterHUD.show(in: self.view)
-        
-        Auth.auth().createUser(withEmail: email, password: password) { (res, err) in
+        registrationViewModel.bindableIsRegistering.value = true
+        registrationViewModel.performRegistration { (err) in
             if let err = err {
-                print(err.localizedDescription)
                 self.showHUDWithError(error: err)
                 return
             }
-            print("succesfully created user account", res?.user.uid ?? "")
-            let fileName = UUID().uuidString
-            let imageData = self.registrationViewModel.bindableImage.value?.jpegData(compressionQuality: 0.75) ?? Data()
-            let ref = Storage.storage().reference(withPath: "/images/\(fileName)")
-            
-            ref.putData(imageData, metadata: nil, completion: { (metaData, err) in
-                if let err = err {
-                    self.showHUDWithError(error: err)
-                    return
-                }
-                
-                ref.downloadURL(completion: { (url, err) in
-                    if let err = err {
-                        self.showHUDWithError(error: err)
-                        return
-                    }
-                    
-                    print("absoluteString:",url?.absoluteString ?? "unable to get the path of the file")
-                    self.showRegisterHUD.dismiss()
-                })
-                
-            })
-            
         }
     }
     
