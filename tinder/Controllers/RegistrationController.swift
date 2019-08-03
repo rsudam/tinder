@@ -34,6 +34,7 @@ class RegistrationController: UIViewController {
     fileprivate let registerButtonEnableColor = #colorLiteral(red: 0.8157079816, green: 0.09805912524, blue: 0.3333103657, alpha: 1)
     fileprivate let gradientLayer = CAGradientLayer()
     fileprivate let registrationViewModel = RegistrationViewModel()
+    fileprivate let showRegisterHUD = JGProgressHUD(style: .dark)
     
     let selectPhotoButton: UIButton = {
        let button = UIButton(type: .system)
@@ -136,7 +137,7 @@ class RegistrationController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        NotificationCenter.default.removeObserver(self)
+        //NotificationCenter.default.removeObserver(self)
     }
     
     
@@ -226,11 +227,17 @@ class RegistrationController: UIViewController {
 
     }
 
+    
+    
+    
     @objc fileprivate func handleRegister(){
         self.handleTapDismiss()
         
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
+        
+        showRegisterHUD.textLabel.text = "Registering..."
+        showRegisterHUD.show(in: self.view)
         
         Auth.auth().createUser(withEmail: email, password: password) { (res, err) in
             if let err = err {
@@ -239,10 +246,33 @@ class RegistrationController: UIViewController {
                 return
             }
             print("succesfully created user account", res?.user.uid ?? "")
+            let fileName = UUID().uuidString
+            let imageData = self.registrationViewModel.bindableImage.value?.jpegData(compressionQuality: 0.75) ?? Data()
+            let ref = Storage.storage().reference(withPath: "/images/\(fileName)")
+            
+            ref.putData(imageData, metadata: nil, completion: { (metaData, err) in
+                if let err = err {
+                    self.showHUDWithError(error: err)
+                    return
+                }
+                
+                ref.downloadURL(completion: { (url, err) in
+                    if let err = err {
+                        self.showHUDWithError(error: err)
+                        return
+                    }
+                    
+                    print("absoluteString:",url?.absoluteString ?? "unable to get the path of the file")
+                    self.showRegisterHUD.dismiss()
+                })
+                
+            })
+            
         }
     }
     
     fileprivate func showHUDWithError(error: Error) {
+        showRegisterHUD.dismiss()
         let hud = JGProgressHUD(style: .dark)
         hud.textLabel.text = "Failed Registration..."
         hud.detailTextLabel.text = error.localizedDescription
