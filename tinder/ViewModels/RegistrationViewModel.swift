@@ -35,32 +35,47 @@ class RegistrationViewModel {
                 completion(err)
                 return
             }
-            print("succesfully created user account", res?.user.uid ?? "")
-            let fileName = UUID().uuidString
-            let imageData = self.bindableImage.value?.jpegData(compressionQuality: 0.75) ?? Data()
-            let ref = Storage.storage().reference(withPath: "/images/\(fileName)")
+            self.saveImageToFireBase(completion: completion)
+        }
+    }
+    
+    fileprivate func saveImageToFireBase(completion: @escaping (Error?) -> ()){
+        let fileName = UUID().uuidString
+        let imageData = self.bindableImage.value?.jpegData(compressionQuality: 0.75) ?? Data()
+        let ref = Storage.storage().reference(withPath: "/images/\(fileName)")
+        
+        ref.putData(imageData, metadata: nil, completion: { (metaData, err) in
+            if let err = err {
+                completion(err)
+                return
+            }
             
-            ref.putData(imageData, metadata: nil, completion: { (metaData, err) in
+            ref.downloadURL(completion: { (url, err) in
                 if let err = err {
                     completion(err)
                     return
                 }
-                
-                ref.downloadURL(completion: { (url, err) in
-                    if let err = err {
-                        completion(err)
-                        return
-                    }
-                    
-                    print("absoluteString:",url?.absoluteString ?? "unable to get the path of the file")
-                    self.bindableIsRegistering.value = false
-                })
-                
+                let imageUrl = url?.absoluteString ?? ""
+                self.saveInfo(imageUrl: imageUrl, completion: completion)
+                self.bindableIsRegistering.value = false
             })
             
-        }
+        })
     }
     
-    
-    
+    func saveInfo(imageUrl:String, completion: @escaping (Error?) -> ()) {
+        let uid = Auth.auth().currentUser?.uid ?? ""
+        let docData = ["fullName":fullName ?? "",
+                       "imageUrl1":imageUrl,
+                       "email" :email ?? "",
+                       "password":password ?? "",
+                       "uid":uid]
+        Firestore.firestore().collection("users").document(uid).setData(docData) { (err) in
+            if let err = err {
+                completion(err)
+                return
+            }
+            completion(nil)
+        }
+    }
 }
