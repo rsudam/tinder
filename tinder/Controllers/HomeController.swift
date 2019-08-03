@@ -40,8 +40,9 @@ class HomeController: UIViewController {
     }
     
     @objc fileprivate func handleSettings() {
-        let registrationController = RegistrationController()
-        present(registrationController, animated: true)
+        let settingsController = SettingsController()
+        let navigationController = UINavigationController(rootViewController: settingsController)
+        present(navigationController, animated: true)
     }
     
     fileprivate func setupFirestoreUserCards() {
