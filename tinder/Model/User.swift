@@ -10,7 +10,7 @@ import UIKit
 
 struct User:ProducesCardViewModel {
     var name: String?
-    var age: String?
+    var age: Int?
     var profession: String?
     var imageUrl1: String?
     var uid: String?
@@ -18,7 +18,7 @@ struct User:ProducesCardViewModel {
     init(dictionary: [String:Any]) {
         self.name = dictionary["fullName"] as? String ?? ""
         self.imageUrl1 = dictionary["imageUrl1"] as? String ?? ""
-        self.age = dictionary["age"] as? String
+        self.age = dictionary["age"] as? Int
         self.profession = dictionary["profession"] as? String
         self.uid = dictionary["uid"] as? String
     }
@@ -27,7 +27,7 @@ struct User:ProducesCardViewModel {
         
         let attributedText = NSMutableAttributedString(string: "\(name ?? "")", attributes: [.font : UIFont.systemFont(ofSize: 32, weight: .heavy)])
         
-        let ageString = age != nil ? age! : "N/A"
+        let ageString = age != nil ? String(age!) : "N/A"
         
         attributedText.append(NSAttributedString(string: " \(ageString)", attributes: [.font :UIFont.systemFont(ofSize: 24, weight: .regular) ]))
         
