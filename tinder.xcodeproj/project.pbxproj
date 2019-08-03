@@ -20,6 +20,7 @@
 		8E5DDEB322DE29BB0089A2CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E5DDEB122DE29BB0089A2CD /* LaunchScreen.storyboard */; };
 		8E5DDEBC22DE2D860089A2CD /* Extensions+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5DDEBB22DE2D860089A2CD /* Extensions+UIView.swift */; };
 		8E5DDEBF22DE37C90089A2CD /* HomeBottomControlsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5DDEBE22DE37C90089A2CD /* HomeBottomControlsStackView.swift */; };
+		8E77B33422F546CC00682CF6 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E77B33322F546CC00682CF6 /* Bindable.swift */; };
 		8E9F4EC922E35A700088C3BF /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F4EC822E35A700088C3BF /* CardViewModel.swift */; };
 		8E9F4ECC22E363740088C3BF /* Adverstiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F4ECB22E363740088C3BF /* Adverstiser.swift */; };
 		8E9F4ECE22E3690A0088C3BF /* ProducesCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F4ECD22E3690A0088C3BF /* ProducesCardViewModel.swift */; };
@@ -44,6 +45,7 @@
 		8E5DDEB422DE29BB0089A2CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8E5DDEBB22DE2D860089A2CD /* Extensions+UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extensions+UIView.swift"; sourceTree = "<group>"; };
 		8E5DDEBE22DE37C90089A2CD /* HomeBottomControlsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBottomControlsStackView.swift; sourceTree = "<group>"; };
+		8E77B33322F546CC00682CF6 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		8E9F4EC822E35A700088C3BF /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		8E9F4ECB22E363740088C3BF /* Adverstiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Adverstiser.swift; sourceTree = "<group>"; };
 		8E9F4ECD22E3690A0088C3BF /* ProducesCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProducesCardViewModel.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				8E9F4EC822E35A700088C3BF /* CardViewModel.swift */,
 				8E9F4ECD22E3690A0088C3BF /* ProducesCardViewModel.swift */,
 				8ECEEE9622F33A2C006EC3B4 /* RegistrationViewModel.swift */,
+				8E77B33322F546CC00682CF6 /* Bindable.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 				8E1195E022E8A31C00D18C10 /* RegistrationController.swift in Sources */,
 				8E9F4EC922E35A700088C3BF /* CardViewModel.swift in Sources */,
 				8E38F33922DF74CA00EDF039 /* CardView.swift in Sources */,
+				8E77B33422F546CC00682CF6 /* Bindable.swift in Sources */,
 				8E1195E322E8AEEB00D18C10 /* CustomTextField.swift in Sources */,
 				8ECEEE9722F33A2C006EC3B4 /* RegistrationViewModel.swift in Sources */,
 				8E38F33722DF6B1400EDF039 /* TopNavigationStackView.swift in Sources */,

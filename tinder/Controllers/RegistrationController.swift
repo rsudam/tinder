@@ -10,6 +10,22 @@ import UIKit
 import Firebase
 import JGProgressHUD
 
+extension RegistrationController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[.originalImage] as? UIImage
+        registrationViewModel.bindableImage.value = image
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+}
+
+
 class RegistrationController: UIViewController {
     
     //MARK:- fileprivate instance variables
@@ -26,6 +42,9 @@ class RegistrationController: UIViewController {
         button.setTitleColor(.black, for: .normal)
         button.backgroundColor = .white
         button.heightAnchor.constraint(equalToConstant: 275).isActive = true
+        button.addTarget(self, action: #selector(handleSelectPhoto), for: .touchUpInside)
+        button.imageView?.contentMode = .scaleAspectFill
+        button.clipsToBounds = true
         button.layer.cornerRadius = 16
         return button
     }()
@@ -185,7 +204,11 @@ class RegistrationController: UIViewController {
     }
     
     fileprivate func setupRegistrationFormValidationObserver() {
-        registrationViewModel.registrationFormValidationObserver = {[unowned self] (isFormValid) in
+
+        registrationViewModel.bindableIsFormValidation.bind { (isFormValid) in
+            
+            guard let isFormValid = isFormValid else { return }
+            
             self.registerButton.isEnabled = isFormValid
             if isFormValid {
                 self.registerButton.backgroundColor = self.registerButtonEnableColor
@@ -195,6 +218,12 @@ class RegistrationController: UIViewController {
                 self.registerButton.setTitleColor(.darkGray, for: .disabled)
             }
         }
+        
+        registrationViewModel.bindableImage.bind { [unowned self] (image) in
+            guard let image = image else {return}
+            self.selectPhotoButton.setImage(image.withRenderingMode(.alwaysOriginal), for: .normal)
+        }
+
     }
 
     @objc fileprivate func handleRegister(){
@@ -220,5 +249,11 @@ class RegistrationController: UIViewController {
         hud.show(in: self.view)
         hud.dismiss(afterDelay: 4)
         
+    }
+    
+    @objc fileprivate func handleSelectPhoto() {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true, completion: nil)
     }
 }
