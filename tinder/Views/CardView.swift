@@ -7,18 +7,22 @@
 //
 
 import UIKit
+import SDWebImage
 
 class CardView: UIView {
     
     var cardViewModel: CardViewModel! {
         didSet {
-            let imageName = cardViewModel.imageNames.first ?? ""
-            imageView.image = UIImage(named: imageName)
+            let imageName = cardViewModel.imageUrls.first ?? ""
+            
+            guard let url = URL(string: imageName) else { return }
+            
+            imageView.sd_setImage(with: url, completed: nil)
             informationLabel.attributedText = cardViewModel.attributedString
             informationLabel.textAlignment = cardViewModel.textAlignment
             
-            if cardViewModel.imageNames.count > 1 {
-                (0..<cardViewModel.imageNames.count).forEach { (_) in
+            if cardViewModel.imageUrls.count > 1 {
+                (0..<cardViewModel.imageUrls.count).forEach { (_) in
                     let view = UIView()
                     view.backgroundColor = barDeselectedColor
                     view.layer.cornerRadius = 2
@@ -162,7 +166,7 @@ class CardView: UIView {
     
     @objc fileprivate func handleTap(gesture: UITapGestureRecognizer){
         
-        if cardViewModel.imageNames.count > 1 {
+        if cardViewModel.imageUrls.count > 1 {
             let tapLocation = gesture.location(in: nil)
             
             let shouldAdvanceNextPhoto = tapLocation.x > frame.width / 2 ? true : false

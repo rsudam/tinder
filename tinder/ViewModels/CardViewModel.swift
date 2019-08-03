@@ -10,20 +10,20 @@ import UIKit
 
 class CardViewModel {
     
-    let imageNames: [String]
+    let imageUrls: [String]
     let attributedString: NSAttributedString
     let textAlignment: NSTextAlignment
     
     
     init(imageNames: [String], attributedString: NSAttributedString, textAlignment: NSTextAlignment) {
-        self.imageNames = imageNames
+        self.imageUrls = imageNames
         self.attributedString = attributedString
         self.textAlignment = textAlignment
     }
     
     fileprivate var imageIndex = 0 {
         didSet{
-            let imageName = imageNames[imageIndex]
+            let imageName = imageUrls[imageIndex]
             let image = UIImage(named: imageName)
             imageIndexObserver?(imageIndex, image)
         }
@@ -31,7 +31,7 @@ class CardViewModel {
     
     
     func advanceToNextPhoto() {
-        imageIndex = min(imageIndex + 1, imageNames.count - 1)
+        imageIndex = min(imageIndex + 1, imageUrls.count - 1)
     }
     
     func gotoPreviousPhoto() {
